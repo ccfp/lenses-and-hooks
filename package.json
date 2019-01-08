@@ -1,0 +1,17 @@
+{
+  "name": "lenses-sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "partial.lenses": "^14.17.0",
+    "ramda": "^0.26.1",
+    "tape": "^4.9.2"
+  }
+}
