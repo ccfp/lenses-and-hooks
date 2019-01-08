@@ -21,7 +21,8 @@ const incrementPromiseValue = promiseMap(x => x + 1)
 // Returns a promise that resolves to 2
 incrementPromisedValue(Promise.resolve(1))
 ```
-<details><summary>A note about the difference between `.map` and `.then`<summary>
+<details>
+<summary>A note about the difference between `.map` and `.then`<summary>
 
 Note that `.then` is a bit overloaded, because we can also return another `Promise` within and it'll be "flattened":
 ```javascript
@@ -30,8 +31,8 @@ Note that `.then` is a bit overloaded, because we can also return another `Promi
 (f => xs => xs.then(f))(x => Promise.resolve(x + 1))(Promise.resolve(1))
 ```
 👆 This is confusing syntax (I'll try to think of a better way of showing this), but you can copy-paste each line to the console to confirm they evaluat the same.
-
 </details>
+
 We can also define our own functors. Here's a naive `Identity` implementation:
 
 ```javascript
