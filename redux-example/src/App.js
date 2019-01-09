@@ -1,14 +1,26 @@
 import React, { Component, useState } from "react"
+import { connect } from "react-redux"
+
+import { toFahrenheit, toCelsius } from "./lib"
+
 import "./App.css"
 
-const App = () => {
+const App = ({ temperature, onClick }) => {
   return (
-    <div className="App" name="App">
-      <label htmlFor="name">
-        <input type="text" id="name" value="Hello" />
-      </label>
-    </div>
+    <main>
+      <h2>{temperature}</h2>
+      <button onClick={onClick}>Click me!</button>
+    </main>
   )
 }
 
-export default App
+const mapStateToProps = state => ({ temperature: state.child.fahrenheit })
+
+const mapDispatchToProps = dispatch => ({
+  onClick: () => dispatch({ type: "INCREMENT" })
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
