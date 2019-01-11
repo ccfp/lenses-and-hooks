@@ -1,4 +1,7 @@
 ## Functors
+
+### The `Array` functor
+
 A functor is something that you can define a `map` function for. In JavaScript, the most familiar functor is `Array`:
 ```javascript
 const arrayMap = f => xs => xs.map(f)
@@ -9,6 +12,8 @@ incrementArray([1, 2, 3])
 // -> [2, 3, 4]  
 ```
 
+### The `Promise` functor?
+
 Another one is `Promise`:
 
 ```javascript
@@ -16,7 +21,7 @@ const promiseMap = f => p => p.then(f)
 
 const incrementPromise = promiseMap(x => x + 1)
 
-// Returns a promise that resolves to 2
+// Returns a Promise that resolves to 2
 incrementPromise(Promise.resolve(1))
 ```
 
@@ -34,6 +39,7 @@ incrementPromise(Promise.resolve(1))
 </details>
 
 
+### The hacky `Object` functor
 
 And you really _shouldn't do this_, but it's possible to extend the `Object` prototype to have a `map` method on it as well.
 
@@ -47,9 +53,13 @@ Object.prototype.map = function(f) {
 
 const objectMap = f => obj => obj.map(f)
 
-objectMap(x => x + 1)({ foo: 1, bar: 2 })
+const incrementObj = objectMap(x => x + 1)
+
+incrementObj({ foo: 1, bar: 2 })
 // -> { foo: 2, bar: 3 }
 ```
+
+### Custom (but valid) functors
 
 We can also define our own functors. Here's a naive `Identity` implementation:
 
@@ -67,18 +77,49 @@ A more robust version using ES6 `class`:
 ```javascript
 class Identity {
   constructor(x) {
-    this.getIdentity = () => x
+    this._value = x
   }
   static of(x) {
     return new Identity(x)
   }
   map(f) {
-    return new Identity(f(this.getIdentity()))
+    return new Identity(f(this._value))
+  }
+  getIdentity() {
+    return this._value
   }
 }
+
+const identityMap = f => identity => identity.map(f)
+
+const incrementIdentity = identityMap(x => x + 1)
+
+incrementIdentity(Identity.of(3)).getIdentity()
+// -> 4
+```
+
+Here's a rendition of the `Const` functor (_can you spot the difference?_):
+
+```javascript
+class Const {
+  constructor(x) {
+    this._value = x
+  }
+  static of(x) {
+    return new Const(x)
+  }
+  map(f) {
+    return new Const(this._value)
+  }
+  runConst() {
+    return this._value
+  }
+}
+```
+
+Aside from  difference is in the respective `map` method.
 
 Identity.of(3).map(x => x + 1).getIdentity()
 // -> 4
 ```
-
 Why am I going on about functors? Turns out that an implementation of lense "getter" and "setter" functions relies on these seemingly useless `Identity` and `Const` functors.
