@@ -20,6 +20,7 @@ class Const {
   static of(x) {
     return new Const(x)
   }
+  // map ignores the function passed to it
   map(_) {
     return new Const(this._value)
   }

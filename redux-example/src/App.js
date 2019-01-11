@@ -1,26 +1,27 @@
 import React, { Component, useState } from "react"
-import { connect } from "react-redux"
 
 import { toFahrenheit, toCelsius } from "./lib"
+import { lensPath, over, set, view } from "ramda"
 
 import "./App.css"
 
-const App = ({ temperature, onClick }) => {
+const App = () => {
+  const initialState = { fahrenheit: 70, other: {} }
+  const [state, setState] = useState(initialState)
+
+  // const state = initialState
+  // const useLensState = lens => ({
+  //   state: view(lens, state),
+  //   setState: setState(set(lens))
+  // })
+
+  // const lensState = useLensState(lensPath(["fahrenheit"]))
+
   return (
     <main>
-      <h2>{temperature}</h2>
-      <button onClick={onClick}>Click me!</button>
+      <pre>{JSON.stringify(state)}</pre>
     </main>
   )
 }
 
-const mapStateToProps = state => ({ temperature: state.child.fahrenheit })
-
-const mapDispatchToProps = dispatch => ({
-  onClick: () => dispatch({ type: "INCREMENT" })
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default App
