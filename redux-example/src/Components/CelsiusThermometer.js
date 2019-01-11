@@ -2,7 +2,14 @@ import React from "react"
 import Thermometer from "react-thermometer-component"
 
 const CelsiusThermometer = ({ state, setState }) => {
-  const onColder = () => setState(prev => prev - 5)
+  const onColder = () => {
+    console.log("HEYE THIS IS STATE", state)
+
+    setState(prev => {
+      console.log("HEY iitittts PREV::::")
+      return prev - 5
+    })
+  }
   const onHotter = () => setState(prev => prev + 5)
   return (
     <div>
