@@ -85,16 +85,19 @@ class Identity {
   map(f) {
     return new Identity(f(this._value))
   }
-  getIdentity() {
+  runIdentity() {
     return this._value
   }
 }
+```
 
+
+```js
 const identityMap = f => identity => identity.map(f)
 
 const incrementIdentity = identityMap(x => x + 1)
 
-incrementIdentity(Identity.of(3)).getIdentity()
+incrementIdentity(Identity.of(3)).runIdentity()
 // -> 4
 ```
 
@@ -111,15 +114,40 @@ class Const {
   map(f) {
     return new Const(this._value)
   }
-  runConst() {
+  getConst() {
     return this._value
   }
 }
 ```
 
-Aside from  difference is in the respective `map` method.
 
-Identity.of(3).map(x => x + 1).getIdentity()
+Aside from some slight naming inconsistencies&mdash;why `runIdentity` and `getConst` but not `getConst`, etc. 🤷‍♂️&mdash;the difference is in the respective `map` method. You may already see that but first let's try to generalize how `map` works across all our examples:
+
+```javascript
+const arrayMap    = f => xs       => xs.map(f)
+const objectMap   = f => obj      => obj.map(f)
+const identityMap = f => identity => identity.map(f)
+const constMap    = f => cnst     => cnst.map(f)
+// We're ignoring Promise for now
+
+```
+```js
+const constMap = f => constant => constant.map(f)
+
+const incrementConst = constMap(x => x + 1)
+
+incrementConst(Const.of(3)).getConst()
+// -> 3
+```
+
+### Polymorphic `map`
+
+We can generalize this with a _polymorphic_ `map` that works for **any** Functor (any mappable)
+
+
+
+```js
+Identity.of(3).map(x => x + 1).runIdentity()
 // -> 4
 ```
 Why am I going on about functors? Turns out that an implementation of lense "getter" and "setter" functions relies on these seemingly useless `Identity` and `Const` functors.
