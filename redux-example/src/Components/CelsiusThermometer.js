@@ -6,7 +6,7 @@ const CelsiusThermometer = ({ state, setState }) => {
     console.log("HEYE THIS IS STATE", state)
 
     setState(prev => {
-      console.log("HEY iitittts PREV::::")
+      console.log("HEY iitittts PREV::::", prev)
       return prev - 5
     })
   }
