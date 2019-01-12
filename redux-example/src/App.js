@@ -1,5 +1,17 @@
 import React, { useState } from "react"
-import { __, always, ap, compose, lensPath, over, view } from "ramda"
+import {
+  __,
+  always,
+  ap,
+  compose,
+  K,
+  lensPath,
+  over,
+  sequence,
+  set,
+  traverse,
+  view
+} from "ramda"
 
 import CelsiusThermometer from "./Components/CelsiusThermometer"
 import { toFahrenheit, toCelsius } from "./lib"
@@ -13,7 +25,7 @@ const App = () => {
     view(lens, s),
     compose(
       setState_,
-      over(lens)
+      over(lens, __, s)
     )
   ]
 
