@@ -1,0 +1,34 @@
+{
+  "type": "Topology",
+  "bbox": [
+  ],
+  "transform": {
+  },
+  "objects": {
+    "towns": {
+    },
+    "regions": {
+      "type": "GeometryCollection",
+      "geometries": [
+        {
+          "type": "MultiPolygon",
+          "arcs": [
+          ],
+          "id": "WMECo d/b/a Eversource Energy",
+          "properties": {
+            "ELEC_LABEL": "WMECo d/b/a Eversource Energy"
+          }
+        },
+        {
+          "type": "MultiPolygon",
+          "arcs": [
+          ],
+          "id": "Massachusetts Electric d/b/a National Grid",
+          "properties": {
+            "ELEC_LABEL": "Massachusetts Electric d/b/a National Grid"
+          }
+        }
+      ] 
+    } 
+  } 
+}
