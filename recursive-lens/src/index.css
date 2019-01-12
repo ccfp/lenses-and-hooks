@@ -1,0 +1,82 @@
+:root {
+  font-size: 14px;
+  font-weight: 400;
+  box-sizing: border-box;
+  --main: #2c3e50;
+  --red: #e74c3c;
+  --gray: gray;
+  --lightgray: lightgray;
+  --lightorange: #d3540033;
+  --lightyellow: #f1c40f33;
+  --xlightgray: #ecf0f166;
+  --sans-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --mono-font: "SF Mono", "Segoe UI Mono", "Roboto Mono", "Ubuntu Mono", Menlo, Courier, monospace;
+}
+
+* {
+  box-sizing: inherit;
+  font-family: var(--sans-font);
+  color: var(--main);
+}
+
+body {
+  background-color: var(--xlightgray);
+  display: grid;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+}
+
+form {
+  width: 800px;
+  max-width: 100vw;
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+input {
+  font-size: 1rem;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+input.empty {
+  background-color: var(--lightyellow);
+}
+
+input:focus {
+  background-color: var(--lightorange);
+}
+
+section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  align-items: baseline;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  grid-column: 1 / -1;
+}
+
+section>h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+section>label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+
+pre.json {
+  position: absolute;
+  top: 0;
+  left: 80vw;
+  font-family: var(--mono-font);
+  font-size: 1rem;
+  z-index: -1;
+  background-color: #e74c3c10;
+}

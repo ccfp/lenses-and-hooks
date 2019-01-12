@@ -86,3 +86,22 @@ We want to update the `properties` field of each element in the deeply-nested `g
   }
 }
 ```
+
+## Possible solutions
+
+### Using mutation
+
+```js
+geoData.objects.towns.geometries.forEach(
+  (g, i) =>
+    (geoData.objects.towns.geometries[i] = {
+      ...g,
+      properties: {
+        ...g.properties,
+        rate: g.properties.ELEC_LABEL.split(", ").map(
+          label => lookUpTable[label] || 0
+        )
+      }
+    })
+)
+```

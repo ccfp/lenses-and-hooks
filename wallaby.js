@@ -6,7 +6,7 @@ module.exports = function() {
       { pattern: "**/*.test.js", ignore: true }
     ],
 
-    tests: ["map-example/*.test.js", "!**/node_modules/**"],
+    tests: ["**/*.test.js", "!**/node_modules/**", "!**/src/App.*"],
 
     testFramework: "tape",
     env: {
