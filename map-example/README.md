@@ -2,7 +2,9 @@
 
 ![Map](map.png)
 
-A lookup table of providers and `SMART` rates
+## The challenge
+
+Supposing we have a lookup table of providers and `SMART` rates
 ```
 {
   "WMECo d/b/a Eversource Energy": 0.32862,
@@ -11,7 +13,7 @@ A lookup table of providers and `SMART` rates
 }
 ```
 
-Original TopoJSON data
+and some TopoJSON data
 ```
 {
   "type": "Topology",
@@ -55,7 +57,7 @@ Original TopoJSON data
 }
 ```
 
-Desired result
+We want to update the `properties` field of each element in the deeply-nested `geometries` array. Desired result would look like
 ```diff
 {
   ...
@@ -68,14 +70,14 @@ Desired result
           ...
           "properties": {
             "ELEC_LABEL": "WMECo d/b/a Eversource Energy",
-+            "SMART": 0.32862
++           "SMART": 0.32862
           }
         },
         {
           ...
           "properties": {
             "ELEC_LABEL": "Massachusetts Electric d/b/a National Grid",
-+            "SMART": 0.35795
++           "SMART": 0.35795
           }
         },
         ...
@@ -83,34 +85,4 @@ Desired result
     }
   }
 }
-```
-```json
-{
-  "type": "Topology",
-    "bbox": [
-    ],
-    "transform": {
-    },
-    "objects": {
-      "towns": {
-      },
-      "regions": {
-        "type": "GeometryCollection",
-        "geometries": [
-        {
-          "type": "MultiPolygon",
-          "arcs": [
-            ],
-            "id": "WMECo d/b/a Eversource Energy",
-            "properties": {
-              "ELEC": "WMECo d/b/a Eversource Energy",
-              "ELEC_LABEL": "WMECo d/b/a Eversource Energy"
-            }
-        },
-        {
-        },
-        {
-        },
-        {
-        }, ] } } }
 ```
