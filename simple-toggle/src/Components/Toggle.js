@@ -125,7 +125,7 @@ export default class Toggle extends Component {
         onMouseDown={this.handleMouseDown}
       >
         <Rect
-          innerRef={container => (this.container = container)}
+          ref={container => (this.container = container)}
           fill={MAINCOLOR}
           stroke={SECONDARYCOLOR}
           strokeWidth="0.5"
@@ -137,7 +137,7 @@ export default class Toggle extends Component {
           ry="4"
         />
         <Rect
-          innerRef={node => (this.node = node)}
+          ref={node => (this.node = node)}
           fill={MAINCOLOR}
           stroke={SECONDARYCOLOR}
           strokeWidth="0.5"
